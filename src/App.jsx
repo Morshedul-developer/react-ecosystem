@@ -1,9 +1,53 @@
+import { Bar, BarChart, Line, LineChart, XAxis, YAxis } from "recharts";
 import "./App.css";
+
+const students = [
+  {
+    id: 101,
+    name: "Rahim",
+    physics: 78,
+    chemistry: 85,
+    math: 90,
+    biology: 72,
+  },
+  {
+    id: 102,
+    name: "Karim",
+    physics: 65,
+    chemistry: 70,
+    math: 68,
+    biology: 75,
+  },
+  {
+    id: 103,
+    name: "Sumi",
+    physics: 92,
+    chemistry: 88,
+    math: 95,
+    biology: 90,
+  },
+  {
+    id: 104,
+    name: "Nabila",
+    physics: 55,
+    chemistry: 60,
+    math: 58,
+    biology: 62,
+  },
+  {
+    id: 105,
+    name: "Hasan",
+    physics: 80,
+    chemistry: 76,
+    math: 82,
+    biology: 78,
+  },
+];
 
 function App() {
   return (
     <>
-      <div className="navbar bg-base-100 shadow-sm">
+      <div className="navbar bg-base-100 shadow-sm mb-10">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -75,7 +119,28 @@ function App() {
           <a className="btn">Button</a>
         </div>
       </div>
-      <h1 className="text-7xl">Get started</h1>
+      <LineChart
+      
+        width={500}
+        height={500}
+        data={students}
+      >
+        <Line dataKey="physics"></Line>
+        <Line dataKey="chemistry" stroke="red"></Line>
+        <Line dataKey="math"></Line>
+        <Line dataKey="biology"></Line>
+      </LineChart>
+      <BarChart width={600} height={300} data={students}>
+      <XAxis
+        dataKey="name"
+        label={{ position: 'insideBottomRight', value: 'XAxis title', offset: -10 }}
+      />
+      <YAxis label={{ position: 'insideTopLeft', value: 'YAxis title', angle: -90, dy: 60 }} />
+      <Bar dataKey="physics" fill="#8884d8" />
+      <Bar dataKey="chemistry" fill="#8884d8" />
+      <Bar dataKey="math" fill="#8884d8" />
+      <Bar dataKey="biology" fill="#8884d8" />
+    </BarChart>
     </>
   );
 }
