@@ -1,48 +1,53 @@
 import { Bar, BarChart, Line, LineChart, XAxis, YAxis } from "recharts";
 import "./App.css";
+import MarksChart from "./components/MarksChart/MarksChart";
+import axios from "axios";
+import { Suspense } from "react";
 
-const students = [
-  {
-    id: 101,
-    name: "Rahim",
-    physics: 78,
-    chemistry: 85,
-    math: 90,
-    biology: 72,
-  },
-  {
-    id: 102,
-    name: "Karim",
-    physics: 65,
-    chemistry: 70,
-    math: 68,
-    biology: 75,
-  },
-  {
-    id: 103,
-    name: "Sumi",
-    physics: 92,
-    chemistry: 88,
-    math: 95,
-    biology: 90,
-  },
-  {
-    id: 104,
-    name: "Nabila",
-    physics: 55,
-    chemistry: 60,
-    math: 58,
-    biology: 62,
-  },
-  {
-    id: 105,
-    name: "Hasan",
-    physics: 80,
-    chemistry: 76,
-    math: 82,
-    biology: 78,
-  },
-];
+// const students = [
+//   {
+//     id: 101,
+//     name: "Rahim",
+//     physics: 78,
+//     chemistry: 85,
+//     math: 90,
+//     biology: 72,
+//   },
+//   {
+//     id: 102,
+//     name: "Karim",
+//     physics: 65,
+//     chemistry: 70,
+//     math: 68,
+//     biology: 75,
+//   },
+//   {
+//     id: 103,
+//     name: "Sumi",
+//     physics: 92,
+//     chemistry: 88,
+//     math: 95,
+//     biology: 90,
+//   },
+//   {
+//     id: 104,
+//     name: "Nabila",
+//     physics: 55,
+//     chemistry: 60,
+//     math: 58,
+//     biology: 62,
+//   },
+//   {
+//     id: 105,
+//     name: "Hasan",
+//     physics: 80,
+//     chemistry: 76,
+//     math: 82,
+//     biology: 78,
+//   },
+// ];
+
+const marksPromise = axios.get('marksData.json');
 
 function App() {
   return (
@@ -119,7 +124,7 @@ function App() {
           <a className="btn">Button</a>
         </div>
       </div>
-      <LineChart
+      {/* <LineChart
       
         width={500}
         height={500}
@@ -140,7 +145,10 @@ function App() {
       <Bar dataKey="chemistry" fill="#8884d8" />
       <Bar dataKey="math" fill="#8884d8" />
       <Bar dataKey="biology" fill="#8884d8" />
-    </BarChart>
+    </BarChart> */}
+    <Suspense fallback={<div>Loading...</div>}>
+    <MarksChart marksPromise={marksPromise}></MarksChart>
+    </Suspense>
     </>
   );
 }
